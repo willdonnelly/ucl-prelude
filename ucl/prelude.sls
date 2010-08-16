@@ -2,7 +2,7 @@
 (library (ucl prelude)
   (export curry compose
           show print
-          nub intersperse break-on break-string drop-while group-by
+          nub nub-by intersperse break-on break-string drop-while group-by
           for range with-warning with-error
           get-data put-data read-file-data write-file-data with-file-data)
   (import (rnrs) (ucl prelude data))
@@ -34,9 +34,15 @@
 
 ;; NUB xs
 ;;  Remove duplicate elements from XS
-(define (nub xs)
-  (if (> 1 (length xs)) xs
-    (cons (car xs) (nub (filter (lambda (x) (not (equal? (car xs) x))) (cdr xs))))))
+(define (nub xs) (curry nub-by equal?))
+
+;; NUB-BY xs
+;;  Remove duplicate elements from XS according to predicate EQ
+(define (nub-by eq xs)
+  (if (null? xs)
+      '()
+      (let ((e (car xs)) (es (cdr xs)))
+        (cons e (filter (lambda (x) (not (eq e x))) es)))))
 
 ;; FOR ((name (value ...)) ...) expr ...
 ;;   Like LET, but iterates over all possible combinations of
