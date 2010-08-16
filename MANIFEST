@@ -1,0 +1,16 @@
+(package ucl-prelude (0 1)
+  (synopsis "Some basic utility functions")
+  (description "Implements some functions that I found handy enough \
+                to use over and over during the development of the \
+                UCL portability libraries.")
+  (category "UCL")
+
+  (author "Will Donnelly")
+  (email "wgd@willdonnelly.net")
+
+  (license BSD3)
+  (license-file "LICENSE")
+
+  (code "ucl/prelude.sls")
+
+  (schemes ikarus mosh ypsilon plt larceny))
