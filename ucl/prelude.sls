@@ -6,7 +6,7 @@
           intersperse
           break-on break-string
           for range
-          with-warning with-error
+          with-warning with-error replace-error
 
           ;; ucl prelude data
           get-data put-data
@@ -104,5 +104,11 @@
 (define-syntax with-error
   (syntax-rules ()
     ((_ msg thunk) (guard (ex (#t (begin (display msg) (exit #f)))) thunk))))
+
+;; REPLACE-ERROR err thunk
+;;   Execute THUNK, catching any errors and then throwing ERR
+(define-syntax replace-error
+  (syntax-rules ()
+    ((_ err thunk) (guard (ex (#t err)) thunk))))
 
 )
