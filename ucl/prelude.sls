@@ -7,6 +7,7 @@
           break-on break-string
           for range
           with-warning with-error replace-error
+          cleanup
 
           ;; ucl prelude data
           get-data put-data
@@ -86,11 +87,7 @@
 
 ;; RANGE a b
 ;;   Return the numeric range [A,B)
-(define (range a b)
-  (let loop ((x b) (xs '()))
-    (if (< a x)
-        (loop (- x 1) (cons (- x 1) xs))
-        xs)))
+(define (range a b) (do ((i (- y 1) (- i 1)) (a '() (cons i a))) ((< i x) a)))
 
 ;; WITH-WARNING msg ret thunk
 ;;   Execute THUNK, trapping all errors and emitting MSG if they occur,
@@ -110,5 +107,10 @@
 (define-syntax replace-error
   (syntax-rules ()
     ((_ err thunk) (guard (ex (#t err)) thunk))))
+
+;; CLEANUP c e
+;;   Evaluate expression E, perform cleanup action C, return the
+;;   value from evaluating E
+(define-syntax cleanup (syntax-rules () ((_ c e) (let ((r e)) c r))))
 
 )
