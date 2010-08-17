@@ -85,9 +85,9 @@
     ((for ((name vals) . rest) f ...)
      (map (lambda (name) (for rest f ...)) vals))))
 
-;; RANGE a b
-;;   Return the numeric range [A,B)
-(define (range a b) (do ((i (- y 1) (- i 1)) (a '() (cons i a))) ((< i x) a)))
+;; RANGE x y
+;;   Return the numeric range [X,Y)
+(define (range x y) (do ((i (- y 1) (- i 1)) (a '() (cons i a))) ((< i x) a)))
 
 ;; WITH-WARNING msg ret thunk
 ;;   Execute THUNK, trapping all errors and emitting MSG if they occur,
