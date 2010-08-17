@@ -2,7 +2,7 @@
 (library (ucl prelude)
   (export curry compose
           nub nub-by
-          show template
+          show template print
           intersperse
           break-on break-string
           for range
@@ -42,7 +42,7 @@
 ;;   Display OBJ to a string exactly as it would be output by DISPLAY
 (define (show obj) (call-with-string-output-port (curry display obj)))
 
-;; TEPLATE str . vals
+;; TEMPLATE str . vals
 ;;   Return STR, but with % characters replaced with the
 ;;   provided values, as they would be rendered by DISPLAY.
 (define (template str . vals)
@@ -51,6 +51,10 @@
          (objs   (map show vals))
          (all    (cons (car strs) (apply append (map list objs (cdr strs))))))
     (apply string-append all)))
+
+;; PRINT str . vals
+;;   Apply the DISPLAY function to the result of (TEMPLATE str . vals)
+(define (print str . vals) (display (apply template str vals)))
 
 ;; INTERSPERSE e l
 ;;   Intersperses value E between the elements of L.
