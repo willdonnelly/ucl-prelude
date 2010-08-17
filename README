@@ -1,6 +1,8 @@
-UCL-Prelude is a simple library of functions that came in handy during the
-development of the other UCL libraries. I figure other people might find it
-useful as well.
+UCL PRELUDE
+===========
+
+A small library of pure scheme functions that came in handy during the
+development of the other UCL libraries.
 
 Functions
 ---------
