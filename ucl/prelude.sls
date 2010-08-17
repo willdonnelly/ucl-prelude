@@ -2,7 +2,7 @@
 (library (ucl prelude)
   (export curry compose
           nub nub-by
-          show print
+          show template
           intersperse
           break-on break-string
           for range
@@ -41,10 +41,10 @@
 ;;   Display OBJ to a string exactly as it would be output by DISPLAY
 (define (show obj) (call-with-string-output-port (curry display obj)))
 
-;; PRINT str . vals
+;; TEPLATE str . vals
 ;;   Return STR, but with % characters replaced with the
 ;;   provided values, as they would be rendered by DISPLAY.
-(define (print str . vals)
+(define (template str . vals)
   (let* ((chunks (break-on (curry equal? #\%) (string->list str)))
          (strs   (map list->string chunks))
          (objs   (map show vals))
