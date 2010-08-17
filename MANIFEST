@@ -9,6 +9,8 @@
 
 (author "Will Donnelly")
 (email "wgd@willdonnelly.net")
+(docs "http://github.com/willdonnelly/ucl-prelude/wiki")
+(upstream "http://github.com/willdonnelly/ucl-prelude")
 
 (license BSD3)
 (license-file "LICENSE")
