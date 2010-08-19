@@ -16,4 +16,4 @@
 
 (code "ucl/prelude.sls" "ucl/prelude/*.sls")
 
-(schemes ikarus mosh ypsilon plt larceny)
+(schemes ikarus larceny mosh racket ypsilon)
